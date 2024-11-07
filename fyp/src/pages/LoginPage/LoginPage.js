@@ -1,3 +1,4 @@
+// src/LoginPage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './LoginPage.css';
@@ -50,8 +51,9 @@ const LoginPage = () => {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="rememberMe">
+                    {/* Flex container for Remember Me and Forgot Password */}
+                    <div className="remember-forgot-container">
+                        <label htmlFor="rememberMe" className="remember-me">
                             <input
                                 type="checkbox"
                                 id="rememberMe"
@@ -60,9 +62,9 @@ const LoginPage = () => {
                             />
                             Remember Me
                         </label>
-                        <p className="forgot-password-link">
-                            <Link to="/passforget">Forgot Password?</Link>
-                            </p>
+                        <Link to="/passforget" className="forgot-password-link">
+                            Forgot Password?
+                        </Link>
                     </div>
 
                     {/* Login Button */}

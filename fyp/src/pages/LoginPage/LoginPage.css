@@ -1,4 +1,5 @@
 /* src/LoginPage.css */
+
 .login-container {
     max-width: 400px;
     margin: 50px auto;
@@ -33,13 +34,6 @@ h3 {
     letter-spacing: 1px;
 }
 
-h4 {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-
-
 h2 {
     text-align: center;
     font-size: 24px;
@@ -64,18 +58,31 @@ h2 {
     border-radius: 4px;
 }
 
+/* Flex container for Remember Me and Forgot Password link */
+.remember-forgot-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-/* Style for the checkbox and its label */
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
 .remember-me input {
-    margin-right: 8px;    /* Space between checkbox and text */
+    margin-right: 5px; /* Space between checkbox and label */
 }
 
-/* Optional: Style for the Remember Me label */
-.remember-me label {
-    font-size: 14px;      /* Adjust text size */
-    color: #333;          /* Color for label text */
+.forgot-password-link {
+    color: #007BFF;
+    text-decoration: none;
 }
 
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
 
 /* Style the login button */
 button.login-button {
@@ -92,24 +99,6 @@ button.login-button {
 button.login-button:hover {
     background-color: #0056b3;
 }
-
-/* Style for the forgot password link */
-p.forgot-password-link {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-p.forgot-password-link a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-p.forgot-password-link a:hover {
-    text-decoration: underline;
-}
-
-
 
 /* Style for the register link */
 p.register-link {
