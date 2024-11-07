@@ -93,6 +93,24 @@ button.login-button:hover {
     background-color: #0056b3;
 }
 
+/* Style for the forgot password link */
+p.forgot-password-link {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+p.forgot-password-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+p.forgot-password-link a:hover {
+    text-decoration: underline;
+}
+
+
+
 /* Style for the register link */
 p.register-link {
     text-align: center;
