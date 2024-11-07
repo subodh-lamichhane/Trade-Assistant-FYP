@@ -1,12 +1,15 @@
+// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css'; // Global styles (optional, if you're using this)
-import App from './App';  // Import your main App component
+import ReactDOM from 'react-dom/client'; // Import from 'react-dom/client'
+import './index.css';
+import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-// Render the App component into the root element of your HTML
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')); // Use createRoot instead of render
 root.render(
   <React.StrictMode>
-    <App />  {/* Render your main app */}
+    <Router> {/* Router should still wrap your app */}
+      <App />
+    </Router>
   </React.StrictMode>
 );

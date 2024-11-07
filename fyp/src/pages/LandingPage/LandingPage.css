@@ -1,6 +1,8 @@
-/* FIRST PAGE CSS */
-*
- {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+/* Reset and Basic Styling */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,20 +12,50 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Stack items vertically */
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
+/* Title Styling */
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-top: 20px; /* Only space above the title */
+    margin-bottom: 20px; /* Space between title and subtitle */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-top: 10px; /* Only space above the title */
+    margin-bottom: 80px; /* Space between title and boxes */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* Container and Box Layout */
 .container {
     display: flex;
-    gap: 100px;
+    gap: 100px; /* Adjust gap between boxes */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width to allow centered content */
 }
 
 .box {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 450px; /* Smaller width for better alignment */
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,5 +101,3 @@ body {
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.6);
 }
-
-/* END OF FIRST PAGE CSS */
