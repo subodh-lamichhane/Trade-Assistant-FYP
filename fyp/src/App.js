@@ -1,15 +1,20 @@
 // src/App.js
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom'; // Import Navigate for redirection
+import { Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
+
+import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 
 const App = () => {
   return (
     <Routes>
-      {/* Redirect "/" to "/register" */}
-      <Route path="/" element={<Navigate to="/register" />} /> {/* Redirect from root to register */}
+      {/* Route for homepage ('/') */}
+      <Route path="/" element={<RegistrationPage />} /> {/* Set the default page here */}
 
-      {/* Registration Page Route */}
+      {/* Route for login */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Route for registration */}
       <Route path="/register" element={<RegistrationPage />} />
     </Routes>
   );
