@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'; // Import Routes instead of Sw
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 const App = () => {
   return (
@@ -16,6 +17,9 @@ const App = () => {
 
       {/* Route for registration */}
       <Route path="/register" element={<RegistrationPage />} />
+
+      {/* Route for landing page */}
+      <Route path="/landing" element={<LandingPage />} />
     </Routes>
   );
 };

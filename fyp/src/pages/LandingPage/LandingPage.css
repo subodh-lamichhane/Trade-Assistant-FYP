@@ -75,16 +75,20 @@ h3 {
 
 .box h2 {
     z-index: 1;
+    font-size: 44px;
+    font-family: cursive;
 }
 
 #global {
     background: url('https://via.placeholder.com/300x300?text=Global') no-repeat center center;
     background-size: cover;
+    background-image: url('/home/subodh-lamichhane/Subodh Files/FYP/fyp/src/assets/images/goglobal.webp');
 }
 
 #local {
     background: url('https://via.placeholder.com/300x300?text=Local') no-repeat center center;
     background-size: cover;
+    background-image: url('/home/subodh-lamichhane/Subodh Files/FYP/fyp/src/assets/images/golocal.webp');
 }
 
 .overlay {
