@@ -28,7 +28,7 @@ const RegistrationPage = () => {
         <h2>Register Your Account</h2>
         <form onSubmit={handleSubmit}>
 
-        <div className="form-group">
+          <div className="form-group">
             <label htmlFor="fullname">Full Name:</label>
             <input
               type="fullname"

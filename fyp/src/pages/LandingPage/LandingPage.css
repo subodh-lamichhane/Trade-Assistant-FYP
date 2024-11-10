@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
+
 /* Reset and Basic Styling */
-* {
+* { 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,10 +13,36 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
+
+.heading-line {
+    height: 2px; /* Thickness of the line */
+    background-color: #000000; /* Color of the line */
+    width: 100%; /* Width of the line */
+    margin-top: 40px; /* Adjust this value to move the line further from the heading */
+    margin-bottom: 60px; /* Add some space below the line to separate it from the content */
+}
+
+
+h2 {
+    font-family: 'Roboto', sans-serif; 
+    font-size: 2.5rem; /* Slightly smaller for readability */
+    font-weight: 700;
+    color: #ffffff; /* White for high contrast on a colorful background */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #108d39, #d83d3d); /* Subtle gradient to add sophistication */
+    padding: 10px 20px; /* Adds padding for a more defined look */
+    border-radius: 8px; /* Rounded edges for a softer feel */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for a subtle lift effect */
+}
+
 
 /* Title Styling */
 h1 {
@@ -24,8 +51,8 @@ h1 {
     font-weight: bold;
     color: #000000;
     text-align: center;
-    margin-top: 20px; /* Only space above the title */
-    margin-bottom: 20px; /* Space between title and subtitle */
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -36,61 +63,87 @@ h3 {
     font-weight: bold;
     color: #000000;
     text-align: center;
-    margin-top: 10px; /* Only space above the title */
-    margin-bottom: 80px; /* Space between title and boxes */
+    margin-top: 10px;
+    margin-bottom: 50px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-
 /* Container and Box Layout */
 .container {
     display: flex;
-    gap: 100px; /* Adjust gap between boxes */
+    gap: 100px;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Full width to allow centered content */
+    width: 100%;
 }
 
 .box {
+    perspective: 1000px;
+}
+
+.flip-card {
     position: relative;
-    width: 450px; /* Smaller width for better alignment */
+    width: 450px;
     height: 450px;
+    background-color: #154e18;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+    box-shadow: 10px 15x 25px rgba(0, 0, 0, 0.3);
+}
+
+.box:hover .flip-card {
+    transform: rotateY(180deg); /* Flip the card on hover */
+}
+
+/* Front and Back Styling */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Prevents showing the reverse side when not intended */
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     font-size: 24px;
     font-weight: bold;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    padding: 20px;
+    text-align: center;
 }
 
-.box:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-}
-
-.box h2 {
-    z-index: 1;
-    font-size: 44px;
-    font-family: cursive;
-}
-
-#global {
-    background: url('https://via.placeholder.com/300x300?text=Global') no-repeat center center;
+.front {
     background-size: cover;
-    background-image: url('/home/subodh-lamichhane/Subodh Files/FYP/fyp/src/assets/images/goglobal.webp');
+    background-position: center;
+    border-radius: 15px;
 }
 
-#local {
-    background: url('https://via.placeholder.com/300x300?text=Local') no-repeat center center;
-    background-size: cover;
-    background-image: url('/home/subodh-lamichhane/Subodh Files/FYP/fyp/src/assets/images/golocal.webp');
+.back {
+    background-color: rgba(38, 131, 30, 0.75); /* Darker background for better contrast */
+    transform: rotateY(180deg); /* Ensures the back side is not inverted */
+    font-size: 38px; /* Slightly smaller for a more balanced look */
+    color: #f5f5f5; /* Light grey for a professional look */
+    font-weight: 500; /* Medium weight for better text balance */
+    padding: 20px; /* Added padding for better spacing */
+    text-align: center; /* Center the text */
+    border-radius: 15px; /* Smooth edges */
+    box-shadow: 10px 15px 20px rgba(7, 216, 24, 0.5); /* Subtle shadow for depth */
 }
 
+
+/* Specific Backgrounds */
+#global .front {
+    background-image: url('../../assets/images/goglobal.webp');
+}
+
+#local .front {
+    background-image: url('../../assets/images/golocal.webp');
+}
+
+/* Overlay Effect */
 .overlay {
     position: absolute;
     top: 0;
