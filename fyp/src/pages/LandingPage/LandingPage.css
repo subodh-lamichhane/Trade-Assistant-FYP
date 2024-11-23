@@ -27,7 +27,7 @@ body {
 }
 
 
-h2 {
+.front h2 {
     font-family: 'Roboto', sans-serif; 
     font-size: 2.5rem; /* Slightly smaller for readability */
     font-weight: 700;

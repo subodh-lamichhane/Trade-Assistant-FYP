@@ -14,24 +14,27 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 3rem;
     font-weight: bold;
-    color: #000000;
+ 
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    color: #1eff00; /* Muted red */
+   
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: bold;
-    color: #000000;
+   
     text-align: center;
     margin-top: 10px;
     margin-bottom: 80px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    color: #ff0000; /* White text for contrast */
 }
 
 h2 {
