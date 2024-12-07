@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './RegistrationPage.css';
+import Header from '../../components/header/header';
 
 const RegistrationPage = () => {
   const [fullname, setFullName] = useState('');
@@ -20,9 +21,7 @@ const RegistrationPage = () => {
 
   return (
     <div>
-      <h1>Trade Assistant</h1>
-      <h3>Market Mastery Made Simple</h3>
-
+      <Header />
       <div className="register-container">
         <h4>Welcome to the Trade Assistant Platform</h4>
         <h2>Register Your Account</h2>

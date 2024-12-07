@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 import './LoginPage.css';
+import Header from '../../components/header/header';    
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -21,9 +22,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            <h1>Trade Assistant</h1>
-            <h3>Market Mastery Made Simple</h3>
-
+            <Header />
             <div className="login-container">
                 <h4>Welcome Back to the Trade Assistant Platform</h4>
                 <h2>Login to Your Account</h2>
