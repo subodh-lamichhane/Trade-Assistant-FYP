@@ -1,17 +1,19 @@
 import React from 'react';
-import Navbar from './navbar';
-import React, { useState } from 'react';
+import Navbar from '../../components/Navbar/Navbar';
+import Header from '../../components/header/header';
 
-const HomePage = () => {
+
+const GlobalPage = () => {
   return (
     <div>
+      <Header />
       <Navbar />
-      <h1>Welcome to the Home Page</h1>
+      <h1>Global Page</h1>
       {/* Other content */}
     </div>
   );
 };
 
-export default HomePage;
+export default GlobalPage;
 
 

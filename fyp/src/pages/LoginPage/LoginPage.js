@@ -70,7 +70,7 @@ const LoginPage = () => {
 
                     {/* Login Button */}
                     <button type="submit" className="login-button">
-                        LOGIN 
+                        LOGIN
                     </button>
 
                     {/* Link to Registration page */}

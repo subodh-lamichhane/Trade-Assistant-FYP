@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'; // Import Routes instead of Sw
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import LandingPage from './pages/LandingPage/LandingPage';
+import GlobalPage from './pages/GlobalPage/GlobalPage'
 
 const App = () => {
   return (
@@ -20,6 +21,10 @@ const App = () => {
 
       {/* Route for landing page */}
       <Route path="/landing" element={<LandingPage />} />
+
+      {/* Route for global page */}
+      <Route path="/global" element={<GlobalPage />} />      
+
     </Routes>
   );
 };

@@ -17,7 +17,7 @@ const LandingPage = () => {
                             <h2>Go Global</h2>
                         </div>
                         <div className="back">
-                            <p>Learn about international markets, trends, and strategies.</p>
+                            <p>Learn about international markets, trends, and strategies. </p>
                         </div>
                     </div>
                 </div>

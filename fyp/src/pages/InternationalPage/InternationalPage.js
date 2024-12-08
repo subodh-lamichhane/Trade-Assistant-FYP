@@ -8,7 +8,7 @@ const HomePage = () => {
     <div>
       <Header />
       <Navbar />
-      <h1>Welcome to the Home Page</h1>
+      <h1>International Page</h1>
       {/* Other content */}
     </div>
   );

@@ -22,6 +22,7 @@ const RegistrationPage = () => {
   return (
     <div>
       <Header />
+      
       <div className="register-container">
         <h4>Welcome to the Trade Assistant Platform</h4>
         <h2>Register Your Account</h2>
