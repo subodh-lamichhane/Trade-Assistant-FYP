@@ -1,24 +1,20 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
+import express from "express";
+import morgan from "morgan";
+import dotenv from "dotenv";
+import { dbConnect } from "./mongo/dbConnection.js";
 
-dotenv.config();
 const app = express();
-
-// Middleware
-app.use(cors());
+dotenv.config();
 app.use(express.json());
+app.use(morgan("combined"));
 
-// MongoDB connection
-mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.error(err));
+import userRoute from "./routes/user.Route.js"
 
-// Routes
-app.use("/api/users", require("./routes/userRoutes"));
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+dbConnect();
+app.use("/User", userRoute)
+
+app.listen(process.env.PORT, () => {
+  console.log("Server Connected Successfully"); 
+
+});
