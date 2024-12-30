@@ -20,3 +20,30 @@ export const addUser = async(req, res) => {
         console.log(Error)
     }
 }
+
+
+export const loginUser = async(req, res) => {
+    try{
+        const {emailAddress, Password} = req.body;
+        const {password} = await bcrypt.hash(Password,10)
+
+        const User = await User.findOne({username:username})
+        If(!User){
+            res.json({message:"Password error"})
+        }
+
+        else{
+            const isValid = await bcrypt.compare(password, User.password)
+            if(isValid === true){
+                console.log(User.id)
+                const token = createToken(User.id)
+                res.json({message:"You are loggedin and token created",
+                        token:token,
+                        User:User.emailAddress
+            )}
+        }
+            else{
+                res.json({message:"Password error"})
+            }
+    }
+}
