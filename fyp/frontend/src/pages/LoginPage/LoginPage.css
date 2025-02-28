@@ -1,46 +1,57 @@
 /* src/LoginPage.css */
 
+/* importing the Oxanium font */
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap');
+
+* {
+    font-family: 'Oxanium', sans-serif;
+}
+
+/* Set a background image for the entire page */
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;  /* Ensure it takes up the full screen height */
+    background-image: url('C:\Everything Subodh\College\Project\FYP\Trade-Assistant-FYP\fyp\frontend\src\assets\images\LoginP\LoginBackground.jpg'); /* Replace with your image path */
+    background-size: cover;  /* Ensure the image covers the entire screen */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat;  /* Prevent repeating the image */
+}
+
 .login-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #E5FFEC;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(35, 226, 18, 0.5);
+    box-shadow: 1px 4px 15px #f9f9f9;
 }
 
 /* Title Styling */
+
+h1, h2, h3 {
+    font-family: 'Oxanium', sans-serif;  /* Ensure Oxanium font is applied */
+    text-transform: none !important;     /* Force the default text case */
+}
+
 h1 {
-    font-family: 'Roboto', sans-serif;
     font-size: 3rem;
     font-weight: bold;
- 
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    text-transform: uppercase;
     letter-spacing: 1px;
-    color: #1eff00; /* Muted red */
-   
+    color: #1eff00;
 }
 
-h3 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 80px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #ff0000; /* White text for contrast */
-}
+
 
 h2 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
 }
+
 
 .form-group {
     margin-bottom: 15px;
@@ -91,10 +102,11 @@ button.login-button {
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    background-color: rgba(52, 180, 40, 0.5);
-    color: white;
+    background-color: #51FE4D;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
 }
 

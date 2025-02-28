@@ -29,12 +29,11 @@ const RegistrationPage = () => {
         <form onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label htmlFor="fullname">Full Name:</label>
             <input
               type="fullname"
               id="fullname"
               name="fullname"
-              placeholder="e.g. John Doe"
+              placeholder="Full Name"
               value={fullname}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -42,12 +41,11 @@ const RegistrationPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phonenumber">Phone Number:</label>
             <input
               type="phonenumber"
               id="phonenumber"
               name="phonenumber"
-              placeholder="e.g. 1234567890"
+              placeholder="Phone Number"
               value={phonenumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
@@ -56,12 +54,11 @@ const RegistrationPage = () => {
 
 
           <div className="form-group">
-            <label htmlFor="email">Email Address:</label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="e.g. example@gmail.com"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -69,24 +66,22 @@ const RegistrationPage = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password:</label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="*******"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password:</label>
             <input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              placeholder="*******"
+              placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required

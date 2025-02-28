@@ -1,0 +1,138 @@
+/* Quiz Page Container */
+.quiz-page {
+    background-color: #0A0A0A;
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Quiz Box */
+.quiz-container {
+    max-width: 600px;
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.quiz-container p{
+    color: white
+}
+/* Quiz Title */
+.quiz-title-b {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #92D050;
+}
+
+.quiz-title-i {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #FFC000;
+}
+
+.quiz-title-e {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #C00000;
+}
+
+
+/* Quiz Question */
+.quiz-question {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Quiz Options */
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quiz-option {
+    background-color: #008cba;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz-option:hover {
+    background-color: #005f8a;
+}
+
+/* Progress Text */
+.quiz-progress {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #555;
+}
+
+/* Quiz Results */
+.quiz-result {
+    text-align: center;
+}
+
+.quiz-result h2 {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.quiz-result p {
+    font-size: 25px;
+    color: #008cba;
+    margin-bottom: 20px;
+}
+
+/* Restart and Home Buttons */
+.restart-btn, .home-btn, .nextLevel-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    color: white;
+}
+
+.restart-btn {
+    background-color: #28A745;
+}
+
+.restart-btn:hover {
+    background-color: #196f2c;
+}
+
+.home-btn {
+    background-color: #DC3545;
+}
+
+.home-btn:hover {
+    background-color: #941925;
+}
+
+.nextLevel-btn {
+    background-color: #007BFF;
+}
+
+.nextLevel-btn:hover {
+    background-color: #0b4584;
+}
+
+/* Horizontal Line */
+.section-divider {
+    width: 100%;
+    margin: 40px auto;
+    border: none;
+    border-top: 2px solid white;
+}

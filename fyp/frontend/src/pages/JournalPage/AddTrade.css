@@ -1,0 +1,81 @@
+.trade-form-page {
+    text-align: center;
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 50px;
+}
+
+.trade-form-container {
+    width: 50%;
+    margin: 40px auto;
+    background-color: #1c1c1c;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+    border: 1px solid rgba(0, 255, 150, 0.2);
+}
+
+.trade-form-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group-a {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group-a label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.form-group-a input, .form-group-a textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2a2a2a;
+    color: white;
+}
+
+.form-group-a textarea {
+    height: 80px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.save-button {
+    background-color: #00FF96;
+    color: black;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #FF6384;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #00cc78;
+}
+
+.cancel-button:hover {
+    background-color: #e55374;
+}

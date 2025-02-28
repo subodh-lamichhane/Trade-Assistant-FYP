@@ -1,0 +1,157 @@
+/* General Styling */
+.markets-page {
+    text-align: center;
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 50px;
+}
+
+/* Section Divider */
+.section-divider {
+    width: 90%;
+    margin: 20px auto;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Market Selection Section */
+.market-selection {
+    padding: 40px 0;
+}
+
+.market-selection h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Market Container */
+.market-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Individual Market Boxes */
+.market-box {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.market-box:hover {
+    transform: scale(1.05);
+}
+
+/* Crypto */
+.market-box-c {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.market-box-c:hover {
+    transform: scale(1.05);
+}
+
+.market-box-c p {
+    margin-top: 100px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+
+/* Nepse */
+.market-box-n {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.market-box-n:hover {
+    transform: scale(1.05);
+}
+
+.market-box-n p {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+/* Market Titles */
+.market-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+/* Unique Title Styling */
+.forex-title {
+    background-color: #0096FF;
+}
+
+.crypto-title {
+    background-color: #0ae188;
+}
+
+.nepse-title {
+    background-color: #FFD700;
+}
+
+/* Market Images */
+.market-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Market Description */
+.market-box p {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+
+
+/* Trade Buttons */
+.market-button {
+    background-color: #00FF96;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.market-button:hover {
+    background-color: #00cc77;
+}

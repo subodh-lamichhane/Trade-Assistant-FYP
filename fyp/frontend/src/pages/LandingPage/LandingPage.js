@@ -1,41 +1,63 @@
 import React from 'react';
 import './LandingPage.css';
-import goglobalImage from '../../assets/images/goglobal.webp';
-import golocalImage from '../../assets/images/golocal.webp';
 import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/footer';
+import Header from '../../components/header/header';
 
+// Import images
+import heroImage from '../../assets/images/HomeP/LandingPage.png';  
+import insightImage from '../../assets/images/HomeP/TradeUp.png';  
+import tradesImage from '../../assets/images/HomeP/Journal.png';  
+import learnImage from '../../assets/images/HomeP/Light.png';  
 
 const LandingPage = () => {
     return (
-        <div>
-            <h1>Trade Assistant</h1>
-            <h3>Market Mastery Made Simple</h3>
-            <div className="heading-line"></div>
+        <div className="landing-page">
+            <Header />
             <Navbar />
-        
-            <div className="container">
-                <div className="box" id="global">
-                    <div className="flip-card">
-                        <div className="front" style={{ backgroundImage: `url(${goglobalImage})` }}>
-                            <h2>Go Global</h2>
-                        </div>
-                        <div className="back">
-                            <p>Learn about international markets, trends, and strategies. </p>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="box" id="local">
-                    <div className="flip-card">
-                        <div className="front" style={{ backgroundImage: `url(${golocalImage})` }}>
-                            <h2>Go Local</h2>
-                        </div>
-                        <div className="back">
-                            <p>Explore local market opportunities and strategies.</p>
-                        </div>
+            {/* Hero Section */}
+            <section className="hero-section">
+                <div className="hero-text">
+                    <h1>Your Complete Trading Companion</h1>
+                    <p>Access global and local market insights, sharpen your strategies, and track your progress with personalized tools. Start mastering the markets today!</p>
+                    <a href="/markets">
+                        <button className="cta-button">View Markets</button>
+                    </a>
+
+                </div>
+                <div className="hero-image">
+                    <img src={heroImage} alt="Trading Illustration" />
+                </div>
+            </section>
+
+            {/* Horizontal Line */}
+            <hr className="section-divider" />
+
+            {/* Market Insights Section */}
+            <section className="market-insights">
+                <h2>The Market’s Unpredictable</h2>
+                <h3>But with us, it’s not!</h3>
+                <div className="insight-container">
+                    <div className="insight-box">
+                        <img src={insightImage} alt="Market Insights" />
+                        <p>Gain accurate market insights</p>
+                    </div>
+                    <div className="insight-box">
+                        <img src={tradesImage} alt="Track Trades" />
+                        <p>Track trades and learn from mistakes</p>
+                    </div>
+                    <div className="insight-box">
+                        <img src={learnImage} alt="Learn and Test" />
+                        <p>Consistently learn and test yourself</p>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            {/* Horizontal Line */}
+            <hr className="section-divider" />
+
+            <Footer />
         </div>
     );
 };

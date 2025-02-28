@@ -1,14 +1,13 @@
-// src/LoginPage.js
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import Header from '../../components/header/header';    
+import Header from '../../components/header/header';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     const handleCheckboxChange = () => {
         setRememberMe(!rememberMe);
@@ -17,42 +16,39 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted:', { email, password, rememberMe });
-        navigate('/landing');
+        navigate('/Home');
     };
 
     return (
-        <div>
+        <div className="login-page">
             <Header />
             <div className="login-container">
                 <h4>Welcome Back to the Trade Assistant Platform</h4>
-                <h2>Login to Your Account</h2>
+                <h2>LOGIN</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="email">Email Address:</label>
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="e.g. example@gmail.com"
+                            placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password:</label>
                         <input
                             type="password"
                             id="password"
                             name="password"
-                            placeholder="*******"
+                            placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                     </div>
 
-                    {/* Flex container for Remember Me and Forgot Password */}
                     <div className="remember-forgot-container">
                         <label htmlFor="rememberMe" className="remember-me">
                             <input
@@ -68,12 +64,10 @@ const LoginPage = () => {
                         </Link>
                     </div>
 
-                    {/* Login Button */}
                     <button type="submit" className="login-button">
                         LOGIN
                     </button>
 
-                    {/* Link to Registration page */}
                     <p className="register-link">
                         Don't have an account? <Link to="/register">Register Here</Link>
                     </p>

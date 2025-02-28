@@ -1,0 +1,124 @@
+.quiz-page {
+    background-color: #0A0A0A;
+    color: #e7e7e7;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  
+}
+
+.quiz-container-q {
+    max-width: 100%;
+    margin: 0 auto;
+    background: rgb(19, 18, 18);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-container-q h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.quiz-container-q p {
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.expertise-container h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #A8DADB;
+}
+
+.expertise-container h3 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+.expertise-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 10px;
+    width: 100%;
+}
+
+/*beginner*/
+.expertise-card-b {
+    text-decoration: none;
+    background: #92D050;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.expertise-card-b:hover {
+    background: #59832c;
+}
+
+
+/*intermediate*/
+.expertise-card-i {
+    text-decoration: none;
+    background: #FFC000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.expertise-card-i:hover {
+    background: #be8e00;
+}
+
+
+/*expert*/
+.expertise-card-e {
+    text-decoration: none;
+    background: #C00000;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.expertise-card-e:hover {
+    background: #750000;
+}
+
+
+/* Horizontal Line */
+.section-divider {
+    width: 100%;
+    margin: 40px auto;
+    border: none;
+    border-top: 2px solid white;
+}
