@@ -1,30 +1,59 @@
-// src/App.js
-import React from 'react';
-import { Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import LandingPage from './pages/LandingPage/LandingPage';
-import GlobalPage from './pages/GlobalPage/GlobalPage'
+import MarketsPage from './pages/MarketsPage/MarketsPage';
+import JournalPage from './pages/JournalPage/JournalPage';
+import AddTrade from './pages/JournalPage/AddTrade';
+import LearningPage from './pages/LearningPage/LearningPage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+
+// Import Quiz Pages
+import QuizPage from './pages/QuizPage/QuizPage';
+import BeginnerQuiz from './pages/QuizPage/TakeQuiz/BeginnerQuiz';
+import IntermediateQuiz from './pages/QuizPage/TakeQuiz/IntermediateQuiz';
+import ExperiencedQuiz from './pages/QuizPage/TakeQuiz/ExperiencedQuiz';
 
 const App = () => {
+  // State to store trades
+  const [trades, setTrades] = useState([]);
+
+  // Function to add a trade
+  const addTrade = (trade) => {
+    setTrades([...trades, trade]);
+  };
+
   return (
     <Routes>
-      {/* Route for homepage ('/') */}
-      <Route path="/" element={<LoginPage />} /> {/* Set the default page here */}
+      {/* Default route for login */}
+      <Route path="/" element={<LoginPage />} /> 
 
-      {/* Route for login */}
+      {/* Authentication routes */}
       <Route path="/login" element={<LoginPage />} />
-
-      {/* Route for registration */}
       <Route path="/register" element={<RegistrationPage />} />
 
-      {/* Route for landing page */}
-      <Route path="/landing" element={<LandingPage />} />
+      {/* Main pages */}
+      <Route path="/home" element={<LandingPage />} /> 
+      <Route path="/markets" element={<MarketsPage />} /> 
+      <Route path="/learning" element={<LearningPage />} /> 
+      <Route path="/about" element={<AboutPage />} /> 
+      <Route path="/profile" element={<ProfilePage />} /> 
 
-      {/* Route for global page */}
-      <Route path="/global" element={<GlobalPage />} />      
+      
+      {/* Trading Journal with trade data */}
+      <Route path="/journal" element={<JournalPage trades={trades} />} /> 
+      
+      {/* Add Trade Form */}
+      <Route path="/tradeadd" element={<AddTrade addTrade={addTrade} />} />
 
+      {/* Quiz Pages */}
+      <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/quiz/beginner" element={<BeginnerQuiz />} />
+      <Route path="/quiz/intermediate" element={<IntermediateQuiz />} />
+      <Route path="/quiz/experienced" element={<ExperiencedQuiz />} />
     </Routes>
   );
 };
