@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap');
+
+* {
+    font-family: 'Oxanium', sans-serif;
+}
+
+.footer {
+  width: 100vw; /* Full page width */
+  background-color: #000;
+  color: #fff;
+  padding: 40px 60px ;
+  position: relative; /* Keep footer at the bottom */
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box; /* Prevent extra spacing */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  max-width: 1200px; /* Adjustable max width */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+.footer-left h3 {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+h1, h2, h3 {
+  font-family: 'Oxanium', sans-serif;  /* Ensure Oxanium font is applied */
+  text-transform: none !important;     /* Force the default text case */
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo .logo {
+  width: 70px;
+  height: 70px;
+}
+
+.footer-socials h4,
+.footer-general h4 {
+  font-size: 20px;
+  color: #A8DADB;
+  margin-right: 400px;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 20px;
+}
+
+.footer-general ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-general ul li {
+  margin-bottom: 5px;
+}
+
+.footer-general ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-general ul li a:hover {
+  color: #1db954;
+}
+
+.footer-divider {
+  width: 1px;
+  background-color: #ffffff;
+  height: 250px;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-right h3 {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #A8DADB;
+}
+
+.faq-list {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.faq-list li {
+  margin-bottom: 10px;
+}
+
+.faq-list li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.faq-list li a:hover {
+  color: #1db954;
+}

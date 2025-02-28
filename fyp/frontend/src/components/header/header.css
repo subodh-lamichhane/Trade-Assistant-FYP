@@ -1,0 +1,28 @@
+/* Import Oxanium font */
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap');
+
+.header {
+    text-align: center;  /* Center align all text inside the header */
+}
+
+.header h1 {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 3rem;  /* Large text size */
+    font-weight: 700;  /* Bold weight */
+    color: #ffffff;  /* Bright green color */
+    letter-spacing: 1px;  /* Slight spacing between letters */
+    margin-bottom: 10px;  /* Space below the heading */
+    padding-top: 20px;
+    margin-top: 0px;
+}
+
+.header h3 {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 1rem;  /* Smaller text size */
+    font-weight: bold;  /* Regular weight */
+    color: #ffffff;  /* White color */
+    letter-spacing: 0.5px;  /* Slight letter spacing */
+    margin-top: 10px;  /* Remove default margin */
+    font-style: italic;
+    margin-bottom: 20px;
+}
