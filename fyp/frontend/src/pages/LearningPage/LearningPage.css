@@ -67,6 +67,66 @@ button:hover, .finish-btn:hover {
     background-color: #D9534F;
 }
 
+.learning-page {
+    background-color: #0A0A0A;
+    color: #E0E0E0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.learning-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 25px;
+    background-color: #111;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.learning-container h1 {
+    color: #00BFFF;
+    font-size: 26px;
+}
+
+.learning-container h2 {
+    color: #67E75E;
+    font-size: 22px;
+}
+
+.chapter-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.chapter-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    background-color: #2A2A2A;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.chapter-text {
+    font-size: 16px;
+    text-align: left;
+    line-height: 1.6;
+    padding: 15px;
+    background-color: #222;
+    border-radius: 8px;
+}
+
+.chapter-navigation {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 /* Horizontal Line */
 .section-divider {
     width: 100%;

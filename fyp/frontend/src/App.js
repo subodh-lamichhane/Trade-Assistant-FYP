@@ -16,6 +16,12 @@ import QuizPage from './pages/QuizPage/QuizPage';
 import BeginnerQuiz from './pages/QuizPage/TakeQuiz/BeginnerQuiz';
 import IntermediateQuiz from './pages/QuizPage/TakeQuiz/IntermediateQuiz';
 import ExperiencedQuiz from './pages/QuizPage/TakeQuiz/ExperiencedQuiz';
+import CryptoChart from './components/Charts/CryptoChart';
+import CryptoPage from './pages/MarketsPage/Markets/CryptoPage';
+import ForexChart from './components/Charts/ForexChart';
+import ForexPage from './pages/MarketsPage/Markets/ForexPage';
+import NepsePage from './pages/MarketsPage/Markets/NepsePage';
+import NepseChart from './components/Charts/NepseChart';
 
 const App = () => {
   // State to store trades
@@ -41,6 +47,12 @@ const App = () => {
       <Route path="/learning" element={<LearningPage />} /> 
       <Route path="/about" element={<AboutPage />} /> 
       <Route path="/profile" element={<ProfilePage />} /> 
+      <Route path="/cryptochart" element={<CryptoChart />} /> 
+      <Route path="/cryptopage" element={<CryptoPage />} /> 
+      <Route path="/forexchart" element={<ForexChart />} /> 
+      <Route path="/forexpage" element={<ForexPage />} /> 
+      <Route path="/nepsechart" element={<NepseChart />} /> 
+      <Route path="/nepsepage" element={<NepsePage />} /> 
 
       
       {/* Trading Journal with trade data */}

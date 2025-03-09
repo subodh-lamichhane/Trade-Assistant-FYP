@@ -1,8 +1,8 @@
 import React from "react";
 
-const CryptoChart = ({ symbol }) => {
+const NepseChart = ({ symbol }) => {
     return (
-        <div className="crypto-chart-container">
+        <div className="nepse-chart-container">
             <iframe
                 src={`https://www.tradingview.com/embed-widget/advanced-chart/?symbol=${symbol}&theme=dark`}
                 width="90%"
@@ -15,4 +15,4 @@ const CryptoChart = ({ symbol }) => {
     );
 };
 
-export default CryptoChart;
+export default NepseChart;

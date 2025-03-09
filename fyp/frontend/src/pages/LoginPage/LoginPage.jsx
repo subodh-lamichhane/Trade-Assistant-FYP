@@ -13,11 +13,29 @@ const LoginPage = () => {
         setRememberMe(!rememberMe);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', { email, password, rememberMe });
-        navigate('/Home');
-    };
+      
+        try {
+          const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+      
+          const data = await response.json();
+          if (response.ok) {
+            localStorage.setItem("token", data.token);
+            alert("Login Successful!");
+            navigate("/Home");
+          } else {
+            alert(data.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+      
 
     return (
         <div className="login-page">

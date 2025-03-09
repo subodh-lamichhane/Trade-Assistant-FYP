@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './JournalPage.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/footer';
 import Header from '../../components/header/header'; 
 import { useNavigate } from 'react-router-dom';
 
-const JournalPage = ({ trades }) => {
+const JournalPage = () => {
+    const [trades, setTrades] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchTrades = async () => {
+            const response = await fetch('/api/trades');
+            const data = await response.json();
+            setTrades(data);
+        };
+
+        fetchTrades();
+    }, []);
 
     return (
         <div className="journal-page">
@@ -35,12 +46,12 @@ const JournalPage = ({ trades }) => {
                         </thead>
                         <tbody>
                             {trades.map((trade, index) => (
-                                <tr key={index}>
+                                <tr key={trade.id}>
                                     <td>{index + 1}</td>
                                     <td>{trade.asset}</td>
                                     <td>{trade.date}</td>
                                     <td>{trade.strategy}</td>
-                                    <td className={trade.profitLoss >= 0 ? "profit" : "loss"}>${trade.profitLoss}</td>
+                                    <td className={trade.profit_loss >= 0 ? "profit" : "loss"}>${trade.profit_loss}</td>
                                 </tr>
                             ))}
                         </tbody>

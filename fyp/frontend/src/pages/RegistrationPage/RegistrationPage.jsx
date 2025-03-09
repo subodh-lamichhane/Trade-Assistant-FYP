@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './RegistrationPage.css';
 import Header from '../../components/header/header';
 
@@ -10,12 +10,32 @@ const RegistrationPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       alert("Passwords don't match!");
-    } else {
-      console.log('Registered:', { email, password });
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: fullname, email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Registration Successful!");
+        navigate('/login'); // Redirect to login page
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -30,7 +50,7 @@ const RegistrationPage = () => {
 
           <div className="form-group">
             <input
-              type="fullname"
+              type="text"
               id="fullname"
               name="fullname"
               placeholder="Full Name"
@@ -42,7 +62,7 @@ const RegistrationPage = () => {
 
           <div className="form-group">
             <input
-              type="phonenumber"
+              type="text"
               id="phonenumber"
               name="phonenumber"
               placeholder="Phone Number"
@@ -51,7 +71,6 @@ const RegistrationPage = () => {
               required
             />
           </div>
-
 
           <div className="form-group">
             <input

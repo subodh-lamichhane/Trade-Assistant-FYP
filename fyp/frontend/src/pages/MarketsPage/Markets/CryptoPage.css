@@ -1,0 +1,33 @@
+/* CryptoPage.css */
+.markets-page {
+    font-family: Arial, sans-serif;
+}
+
+.crypto-selection,
+.chart-type-selection {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.crypto-selection label,
+.chart-type-selection label {
+    font-size: 18px;
+    margin-right: 10px;
+    align-self: center;
+}
+
+.crypto-symbol-select,
+.chart-type-select {
+    font-size: 16px;
+    padding: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 40px 0;
+}

@@ -1,0 +1,12 @@
+.markets-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.nepse-chart-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
