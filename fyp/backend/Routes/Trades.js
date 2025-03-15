@@ -1,22 +1,34 @@
-// routes/Trades.js
-const express = require('express');
-const router = express.Router();
-const pool = require('../db');
+const express = require("express")
+const { protect } = require("../Middlewares/Auth")
+const { getTrades, getTradeById, createTrade, updateTrade, deleteTrade } = require("../Controllers/TradeController")
+const { upload } = require("../Middlewares/FileUpload")
 
-// POST request to add a trade
-router.post('/add', (req, res) => {
-    const { asset, date, strategy, profitLoss } = req.body;
-    
-    // SQL query to insert trade data into the database
-    const query = 'INSERT INTO trades (asset, date, strategy, profit_loss) VALUES (?, ?, ?, ?)';
-    
-    pool.execute(query, [asset, date, strategy, profitLoss], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Error adding trade' });
-        }
-        res.status(201).json({ message: 'Trade added successfully' });
-    });
-});
+const router = express.Router()
 
-module.exports = router;
+// @desc    Get all trades
+// @route   GET /api/trades
+// @access  Private
+router.get("/", protect, getTrades)
+
+// @desc    Create a trade
+// @route   POST /api/trades
+// @access  Private
+router.post("/", protect, upload.single("screenshot"), createTrade)
+
+// @desc    Get a single trade
+// @route   GET /api/trades/:id
+// @access  Private
+router.get("/:id", protect, getTradeById)
+
+// @desc    Update a trade
+// @route   PUT /api/trades/:id
+// @access  Private
+router.put("/:id", protect, upload.single("screenshot"), updateTrade)
+
+// @desc    Delete a trade
+// @route   DELETE /api/trades/:id
+// @access  Private
+router.delete("/:id", protect, deleteTrade)
+
+module.exports = router
+

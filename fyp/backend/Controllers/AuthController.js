@@ -1,44 +1,70 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
+const UserModel = require("../Models/User");
+const bcrypt = require('bcrypt')
 
-exports.signup = async (req, res) => {
+
+const signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.status(409).json({ message: "User already exists" });
+    const user = await UserModel.findOne({ email });
+    if(user) {
+      return res.status(409)
+          .json({ message: 'User already exists, you can login', success: false });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user = new User({ name, email, password: hashedPassword });
-    await user.save();
-
-    res.status(201).json({ message: "Signup successful" });
+    const userModel = new UserModel({ name, email, password });
+    userModel.password = await bcrypt.hash(password, 10);
+    await userModel.save();
+    res.status(201)
+      .json({
+        message: "Signup successful",
+        success: true
+      })
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+      res.status(500)
+        .json({
+          message: "Internal server error",
+          success: false
+        })
   }
-};
+}
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
-    let user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    const user = await UserModel.findOne({ email });
+    const errorMessage = 'Authentication failed, email or password is wrong';
+    if(!user) {
+      return res.status(403)
+          .json({ message: errorMessage, success: false });
     }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+    const isPassEqual = await bcrypt.compare(password, user.password);
+    if(!isPassEqual) {
+        return res.status(403)
+            .json({ message: errorMessage, success: false });
     }
-
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+    const jwtToken = jwt.sign(
+      { email: user.email, _id: user._id },
+      process.env.JWT_SECRET,
+      {expiresIn: '24h' }
+    )
+    res.status(200)
+      .json({
+        message: "Login successful",
+        success: true,
+        jwtToken,
+        email,
+        name: user.name
+      })
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+      res.status(500)
+        .json({
+          message: "Internal server error",
+          success: false
+        })
   }
-};
+}
+
+module.exports = {
+  signup,
+  login
+}
