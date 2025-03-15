@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'; // Import from 'react-dom/client'
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
+import 'react-toastify/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root')); // Use createRoot instead of render
 root.render(

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { handleError, handleSuccess } from '../../components/utils';
 import './LoginPage.css';
 import Header from '../../components/header/header';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [loginInfo, setLoginInfo] = useState({
+        email: '',
+        password: ''
+    });
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
 
@@ -13,29 +17,41 @@ const LoginPage = () => {
         setRememberMe(!rememberMe);
     };
 
-    const handleSubmit = async (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setLoginInfo((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-      
-        try {
-          const response = await fetch("http://localhost:5000/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-          });
-      
-          const data = await response.json();
-          if (response.ok) {
-            localStorage.setItem("token", data.token);
-            alert("Login Successful!");
-            navigate("/Home");
-          } else {
-            alert(data.message);
-          }
-        } catch (error) {
-          console.error("Error:", error);
+        const { email, password } = loginInfo;
+        if (!email || !password) {
+            return handleError('Email and password are required');
         }
-      };
-      
+        try {
+            const url = `https://deploy-mern-app-1-api.vercel.app/auth/login`;
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginInfo)
+            });
+            const result = await response.json();
+            const { success, message, jwtToken, name, error } = result;
+            
+            if (success) {
+                handleSuccess(message);
+                localStorage.setItem('token', jwtToken);
+                localStorage.setItem('loggedInUser', name);
+                setTimeout(() => navigate('/home'), 1000);
+            } else if (error) {
+                handleError(error?.details?.[0]?.message || 'Login failed');
+            } else {
+                handleError(message);
+            }
+        } catch (err) {
+            handleError(err.message);
+        }
+    };
 
     return (
         <div className="login-page">
@@ -43,30 +59,27 @@ const LoginPage = () => {
             <div className="login-container">
                 <h4>Welcome Back to the Trade Assistant Platform</h4>
                 <h2>LOGIN</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleLogin}>
                     <div className="form-group">
                         <input
                             type="email"
-                            id="email"
                             name="email"
                             placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={loginInfo.email}
+                            onChange={handleChange}
                             required
                         />
                     </div>
                     <div className="form-group">
                         <input
                             type="password"
-                            id="password"
                             name="password"
                             placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={loginInfo.password}
+                            onChange={handleChange}
                             required
                         />
                     </div>
-
                     <div className="remember-forgot-container">
                         <label htmlFor="rememberMe" className="remember-me">
                             <input
@@ -81,16 +94,15 @@ const LoginPage = () => {
                             Forgot Password?
                         </Link>
                     </div>
-
                     <button type="submit" className="login-button">
                         LOGIN
                     </button>
-
                     <p className="register-link">
                         Don't have an account? <Link to="/register">Register Here</Link>
                     </p>
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 };

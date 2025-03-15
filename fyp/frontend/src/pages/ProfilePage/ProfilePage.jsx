@@ -7,9 +7,9 @@ import Header from '../../components/header/header';
 const ProfilePage = () => {
   // Set initial values for the user information
   const [userInfo, setUserInfo] = useState({
-    fullName: 'John Doe', // Replace with actual data from backend
+    fullName: 'Subodh Lamichhane', // Replace with actual data from backend
     phoneNumber: '123-456-7890',
-    email: 'johndoe@example.com',
+    email: 'subodhlc10@example.com',
     password: '********',
     profilePicture: '/path/to/profile-pic.jpg', // Replace with actual image URL or base64 data
   });
