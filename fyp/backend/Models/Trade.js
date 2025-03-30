@@ -1,56 +1,54 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
-const tradeSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
-  asset: {
-    type: String,
-    required: [true, "Please provide the traded asset"],
-  },
-  date: {
-    type: Date,
-    required: [true, "Please provide the trade date"],
-  },
-  strategy: {
-    type: String,
-    required: [true, "Please provide the trading strategy"],
-  },
-  positionSize: {
-    type: Number,
-    required: [true, "Please provide the position size"],
-  },
-  entryPrice: {
-    type: Number,
-    required: [true, "Please provide the entry price"],
-  },
-  exitPrice: {
-    type: Number,
-    required: [true, "Please provide the exit price"],
-  },
-  profitLoss: {
-    type: Number,
-    required: [true, "Please provide the profit/loss amount"],
-  },
-  preTradeAnalysis: {
-    type: String,
-  },
-  postTradeReflection: {
-    type: String,
-  },
-  screenshotUrl: {
-    type: String,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-})
+const { Schema, model } = mongoose;
 
-// Check if the model exists before creating it
-const Trade = mongoose.models.Trade || mongoose.model("Trade", tradeSchema)
+const TradeSchema = new Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'users', // Ensure this matches the User model's collection name
+        required: true
+    },
+    tradeType: {
+        type: String,
+        enum: ['Buy', 'Sell'],
+        required: true
+    },
+    asset: {
+        type: String,
+        required: true
+    },
+    entryPrice: {
+        type: Number,
+        required: true
+    },
+    exitPrice: {
+        type: Number,
+        required: true
+    },
+    positionSize: {
+        type: Number,
+        required: true
+    },
+    profitLoss: {
+        type: Number,
+        required: true
+    },
+    preTradeAnalysis: {
+        type: String,
+        required: true
+    },
+    postTradeReflection: {
+        type: String,
+        required: true
+    },
+    screenshot: {
+        type: String, 
+        required: false // Make this optional if not always provided
+    },
+    tradeDate: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-module.exports = Trade
-
+export default model('Trade', TradeSchema);

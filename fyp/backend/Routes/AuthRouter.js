@@ -1,10 +1,12 @@
-const { signupValidation, loginValidation } = require('../Middlewares/AuthValidation');
-const { signup, login } = require('../Controllers/AuthController');
+import { Router } from 'express';
+import { signupValidation, loginValidation } from '../Middlewares/AuthValidation.js';
+import { signup, login, updateUserProfile } from '../Controllers/AuthController.js'; // Added updateUserProfile import
+import authenticate, { protect } from '../Middlewares/AuthMiddleware.js'; // Updated import
 
-
-const router = require('express').Router();
+const router = Router();
 
 router.post('/login', loginValidation, login);
 router.post('/signup', signupValidation, signup);
+router.route('/profile').post(protect,updateUserProfile)
 
-module.exports = router;
+export default router;

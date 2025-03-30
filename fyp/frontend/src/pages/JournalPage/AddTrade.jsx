@@ -5,17 +5,17 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/footer';
 import Header from '../../components/header/header'; 
 
-const AddTrade = ({ addTrade }) => {
+const AddTrade = () => {
     const [trade, setTrade] = useState({
+        tradeType: 'Buy',
         asset: '',
-        date: '',
-        strategy: '',
-        positionSize: '',
         entryPrice: '',
         exitPrice: '',
+        positionSize: '',
         profitLoss: '',
         preTradeAnalysis: '',
         postTradeReflection: '',
+        tradeDate: '',
         screenshot: null
     });
 
@@ -30,12 +30,37 @@ const AddTrade = ({ addTrade }) => {
         setTrade({ ...trade, screenshot: e.target.files[0] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        addTrade(trade);
-        navigate('/journal');  // Redirect back to the journal page
+        
+        const formData = new FormData();
+        Object.keys(trade).forEach(key => {
+            formData.append(key, trade[key]);
+        });
+    
+        try {
+            const response = await fetch('http://localhost:8081/trades/add', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: formData
+            });
+    
+            const result = await response.json();
+            console.log('Response from server:', result); // Log the server response for debugging
+            if (result.success) {
+                alert('Trade added successfully');
+                navigate('/journal');
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error adding trade:', error); // Log the error for debugging
+            alert('Error adding trade');
+        }
     };
-
+    
     return (
         <div className="trade-form-page">
             <Header />
@@ -46,23 +71,16 @@ const AddTrade = ({ addTrade }) => {
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group-a">
+                        <label>Trade Type:</label>
+                        <select name="tradeType" value={trade.tradeType} onChange={handleChange} required>
+                            <option value="Buy">Buy</option>
+                            <option value="Sell">Sell</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group-a">
                         <label>Traded Asset:</label>
                         <input type="text" name="asset" value={trade.asset} onChange={handleChange} required />
-                    </div>
-
-                    <div className="form-group-a">
-                        <label>Date:</label>
-                        <input type="date" name="date" value={trade.date} onChange={handleChange} required />
-                    </div>
-
-                    <div className="form-group-a">
-                        <label>Strategy:</label>
-                        <input type="text" name="strategy" value={trade.strategy} onChange={handleChange} required />
-                    </div>
-
-                    <div className="form-group-a">
-                        <label>Position Size:</label>
-                        <input type="number" name="positionSize" value={trade.positionSize} onChange={handleChange} required />
                     </div>
 
                     <div className="form-group-a">
@@ -76,23 +94,61 @@ const AddTrade = ({ addTrade }) => {
                     </div>
 
                     <div className="form-group-a">
+                        <label>Position Size:</label>
+                        <input type="number" name="positionSize" value={trade.positionSize} onChange={handleChange} required />
+                    </div>
+
+                    <div className="form-group-a">
                         <label>Total Profit/Loss:</label>
-                        <input type="number" step="0.01" name="profitLoss" value={trade.profitLoss} onChange={handleChange} required />
+                        <input 
+                            type="number" 
+                            step="0.01" 
+                            name="profitLoss" 
+                            value={trade.profitLoss} 
+                            onChange={handleChange} 
+                            required 
+                        />
                     </div>
 
                     <div className="form-group-a">
-                        <label>Screenshot:</label>
-                        <input type="file" accept="image/*" onChange={handleFileUpload} />
-                    </div>
-
-                    <div className="form-group-a">
-                        <label>Pre-Trade Analysis/Thoughts:</label>
-                        <textarea name="preTradeAnalysis" value={trade.preTradeAnalysis} onChange={handleChange}></textarea>
+                        <label>Pre-Trade Analysis:</label>
+                        <textarea 
+                            name="preTradeAnalysis" 
+                            value={trade.preTradeAnalysis} 
+                            onChange={handleChange} 
+                            required 
+                        ></textarea>
                     </div>
 
                     <div className="form-group-a">
                         <label>Post-Trade Reflection:</label>
-                        <textarea name="postTradeReflection" value={trade.postTradeReflection} onChange={handleChange}></textarea>
+                        <textarea 
+                            name="postTradeReflection" 
+                            value={trade.postTradeReflection} 
+                            onChange={handleChange} 
+                            required 
+                        ></textarea>
+                    </div>
+
+                    <div className="form-group-a">
+                        <label>Upload Screenshot:</label>
+                        <input 
+                            type="file" 
+                            name="screenshot" 
+                            accept="image/*" 
+                            onChange={handleFileUpload} 
+                        />
+                    </div>
+
+                    <div className="form-group-a">
+                        <label>Trade Date:</label>
+                        <input 
+                            type="date" 
+                            name="tradeDate" 
+                            value={trade.tradeDate} 
+                            onChange={handleChange} 
+                            required 
+                        />
                     </div>
 
                     <div className="form-buttons">

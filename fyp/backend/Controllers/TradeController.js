@@ -1,141 +1,58 @@
-const Trade = require("../Models/Trade")
+import Trade from '../Models/Trade.js';
 
-// @desc    Get all trades for a user
-// @route   GET /api/trades
-// @access  Private
-const getTrades = async (req, res) => {
+export const addTrade = async (req, res) => {
   try {
-    const trades = await Trade.find({ user: req.user._id }).sort({ date: -1 })
-    res.json(trades)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
-  }
-}
+    console.log('Incoming request body:', req.body); // Log the request body
+    console.log('Incoming file:', req.file); // Log the uploaded file (if any)
+    console.log('Authenticated user ID:', req.user?._id); // Log the user ID from JWT
 
-// @desc    Get a single trade
-// @route   GET /api/trades/:id
-// @access  Private
-const getTradeById = async (req, res) => {
-  try {
-    const trade = await Trade.findById(req.params.id)
-
-    if (!trade) {
-      return res.status(404).json({ message: "Trade not found" })
-    }
-
-    // Check if the trade belongs to the logged-in user
-    if (trade.user.toString() !== req.user._id.toString()) {
-      return res.status(401).json({ message: "Not authorized to access this trade" })
-    }
-
-    res.json(trade)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
-  }
-}
-
-// @desc    Create a new trade
-// @route   POST /api/trades
-// @access  Private
-const createTrade = async (req, res) => {
-  try {
     const {
+      tradeType,
       asset,
-      date,
-      strategy,
-      positionSize,
       entryPrice,
       exitPrice,
+      positionSize,
       profitLoss,
       preTradeAnalysis,
       postTradeReflection,
-    } = req.body
+      tradeDate,
+    } = req.body;
 
-    // Handle file upload if implemented
-    let screenshotUrl = ""
-    if (req.file) {
-      screenshotUrl = req.file.path
+    const userId = req.user?._id; // Retrieved from JWT
+
+    // Validate required fields
+    if (!tradeType || !asset || !entryPrice || !exitPrice || !positionSize || !profitLoss || !preTradeAnalysis || !postTradeReflection || !tradeDate) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
-    const trade = await Trade.create({
-      user: req.user._id,
+    const newTrade = new Trade({
+      userId,
+      tradeType,
       asset,
-      date,
-      strategy,
-      positionSize,
       entryPrice,
       exitPrice,
+      positionSize,
       profitLoss,
       preTradeAnalysis,
       postTradeReflection,
-      screenshotUrl,
-    })
+      screenshot: req.file ? req.file.path : null,
+      tradeDate,
+    });
 
-    res.status(201).json(trade)
+    await newTrade.save();
+    res.status(201).json({ success: true, message: 'Trade added successfully', trade: newTrade });
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
+    console.error('Error adding trade:', error); // Log the error for debugging
+    res.status(500).json({ success: false, message: 'Error adding trade', error });
   }
-}
+};
 
-// @desc    Update a trade
-// @route   PUT /api/trades/:id
-// @access  Private
-const updateTrade = async (req, res) => {
+export const getTrades = async (req, res) => {
   try {
-    const trade = await Trade.findById(req.params.id)
-
-    if (!trade) {
-      return res.status(404).json({ message: "Trade not found" })
-    }
-
-    // Check if the trade belongs to the logged-in user
-    if (trade.user.toString() !== req.user._id.toString()) {
-      return res.status(401).json({ message: "Not authorized to update this trade" })
-    }
-
-    // Update the trade
-    const updatedTrade = await Trade.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
-
-    res.json(updatedTrade)
+    const userId = req.user._id; // Retrieved from JWT
+    const trades = await Trade.find({ userId }).sort({ tradeDate: -1 });
+    res.status(200).json({ success: true, trades });
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
+    res.status(500).json({ success: false, message: 'Error fetching trades', error });
   }
-}
-
-// @desc    Delete a trade
-// @route   DELETE /api/trades/:id
-// @access  Private
-const deleteTrade = async (req, res) => {
-  try {
-    const trade = await Trade.findById(req.params.id)
-
-    if (!trade) {
-      return res.status(404).json({ message: "Trade not found" })
-    }
-
-    // Check if the trade belongs to the logged-in user
-    if (trade.user.toString() !== req.user._id.toString()) {
-      return res.status(401).json({ message: "Not authorized to delete this trade" })
-    }
-
-    await Trade.findByIdAndDelete(req.params.id)
-
-    res.json({ message: "Trade removed" })
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ message: "Server error" })
-  }
-}
-
-module.exports = {
-  getTrades,
-  getTradeById,
-  createTrade,
-  updateTrade,
-  deleteTrade,
-}
-
+};
