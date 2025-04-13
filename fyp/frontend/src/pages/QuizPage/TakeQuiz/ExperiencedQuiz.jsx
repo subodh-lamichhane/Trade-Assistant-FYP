@@ -109,6 +109,7 @@ const ExperiencedQuiz = () => {
                         <p>You Got: {score} / {quizQuestions.length}</p>
                         <button className="restart-btn" onClick={restartQuiz}>Restart Quiz</button>
                         <Link to="/home" className="home-btn">Back to Home</Link>
+                        
                     </div>
                 )}
             </div>

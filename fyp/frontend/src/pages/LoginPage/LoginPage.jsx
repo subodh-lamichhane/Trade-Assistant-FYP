@@ -10,12 +10,8 @@ const LoginPage = () => {
         email: '',
         password: ''
     });
-    const [rememberMe, setRememberMe] = useState(false);
-    const navigate = useNavigate();
 
-    const handleCheckboxChange = () => {
-        setRememberMe(!rememberMe);
-    };
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -79,20 +75,6 @@ const LoginPage = () => {
                             onChange={handleChange}
                             required
                         />
-                    </div>
-                    <div className="remember-forgot-container">
-                        <label htmlFor="rememberMe" className="remember-me">
-                            <input
-                                type="checkbox"
-                                id="rememberMe"
-                                checked={rememberMe}
-                                onChange={handleCheckboxChange}
-                            />
-                            Remember Me
-                        </label>
-                        <Link to="/passforget" className="forgot-password-link">
-                            Forgot Password?
-                        </Link>
                     </div>
                     <button type="submit" className="login-button">
                         LOGIN

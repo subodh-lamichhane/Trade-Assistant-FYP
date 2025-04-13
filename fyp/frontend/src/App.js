@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import RefreshHandler from './components/RefreshHandler';
 
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
@@ -47,7 +46,7 @@ const App = () => {
       <Route path="/markets" element={<MarketsPage />} /> 
       <Route path="/learning" element={<LearningPage />} /> 
       <Route path="/about" element={<AboutPage />} /> 
-      <Route path="/profile" element={<ProfilePage />} /> 
+      <Route path='/profile' element={<ProfilePage />} />
       <Route path="/cryptochart" element={<CryptoChart />} /> 
       <Route path="/cryptopage" element={<CryptoPage />} /> 
       <Route path="/forexchart" element={<ForexChart />} /> 

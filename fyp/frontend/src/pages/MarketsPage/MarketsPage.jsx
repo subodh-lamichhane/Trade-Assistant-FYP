@@ -12,7 +12,7 @@ import NepseImage from '../../assets/images/MarketsP/Nepse.png';
 
 const MarketsPage = () => {
     return (
-        <div className="markets-page">
+        <div className="markets-page-m">
             <Header />
             <Navbar />
 

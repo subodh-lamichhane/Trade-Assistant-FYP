@@ -97,3 +97,10 @@ p.login-link a {
 p.login-link a:hover {
     text-decoration: underline;
 }
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}

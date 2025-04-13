@@ -109,7 +109,7 @@ const IntermediateQuiz = () => {
                         <p>You Got: {score} / {quizQuestions.length}</p>
                         <button className="restart-btn" onClick={restartQuiz}>Restart Quiz</button>
                         <Link to="/home" className="home-btn">Back to Home</Link>
-                        <Link to="/experienced" className="nextLevel-btn">Next Level</Link>
+                        <Link to="/quiz/experienced" className="nextLevel-btn">Next Level</Link>
                     </div>
                 )}
             </div>

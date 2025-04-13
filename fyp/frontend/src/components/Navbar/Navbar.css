@@ -48,6 +48,7 @@
 
 /* Search Bar Container */
 .search-container {
+    margin-left: 20px;
     display: flex;
     align-items: center;
     background-color: white;
@@ -83,9 +84,10 @@
 
 /* Profile Button */
 .profile-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    position: relative; /* Ensure dropdown is positioned relative to the button */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make the button circular */
     overflow: hidden;
     cursor: pointer;
     border: 2px solid white;
@@ -93,15 +95,93 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.2s ease-in-out;
-    margin-right: 50px;
+    margin-right: 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 0; /* Remove padding to fit the image perfectly */
+    transition: background-color 0.3s;
 }
 
 .profile-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; /* Ensure the image covers the button */
+    height: 100%; /* Ensure the image covers the button */
+    object-fit: cover; /* Maintain aspect ratio and fill the button */
+    border-radius: 50%; /* Ensure the image is circular */
 }
 
 .profile-button:hover {
     transform: scale(1.1);
+    background-color: #003d80;
+}
+
+.profile-button-container {
+    position: relative; /* Ensure dropdown is positioned relative to the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 62px; /* Adjusted to align below the profile button */
+    right: 0px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.profile-button-container:hover .profile-dropdown {
+    display: flex; /* Show dropdown on hover */
+}
+
+.profile-dropdown button {
+    padding: 10px;
+    background-color: white;
+    width: 100%;
+    color: black;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-picture {
+    width: 60px; /* Set the width of the profile picture */
+    height: 60px; /* Set the height of the profile picture */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image fits within the dimensions */
+    border: 2px solid #ccc; /* Optional: Add a border for styling */
+}
+
+.error-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ff4d4d;
+    border-radius: 5px;
+    background-color: #ffe6e6;
+    color: #cc0000;
+    max-width: 600px;
+}
+
+.error-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    font-size: 1rem;
+    line-height: 1.5;
 }
