@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./footer.css";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
-import Logo from '../../assets/images/TALogo.png';  
+import Logo from '../../assets/images/LOGOTA.png';  
 
 const Footer = () => {
   const [openIndex, setOpenIndex] = useState(null);

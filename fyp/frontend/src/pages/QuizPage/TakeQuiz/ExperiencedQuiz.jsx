@@ -1,78 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './TakeQuiz.css';
 import Navbar from '../../../components/Navbar/Navbar';
 import Footer from '../../../components/Footer/footer';
 import Header from '../../../components/header/header';
 
-const quizQuestions = [
-    {
-        question: "1. What is 'Alpha' in trading?",
-        options: ["A measure of portfolio performance versus a benchmark", "A trading strategy", "A type of stock", "A risk management metric"],
-        answer: "A measure of portfolio performance versus a benchmark"
-    },
-    {
-        question: "2. What is the 'Sharpe Ratio' used for?",
-        options: ["Measuring risk-adjusted return", "Calculating tax liability", "Determining stock dividends", "Predicting market crashes"],
-        answer: "Measuring risk-adjusted return"
-    },
-    {
-        question: "3. What does 'HFT' stand for?",
-        options: ["High Frequency Trading", "Hedged Futures Trading", "Hybrid Fund Trading", "High Fluctuation Trading"],
-        answer: "High Frequency Trading"
-    },
-    {
-        question: "4. What is 'Gamma' in options trading?",
-        options: ["The rate of change of delta", "A type of trading order", "The profit from an option trade", "A long-term stock indicator"],
-        answer: "The rate of change of delta"
-    },
-    {
-        question: "5. What is a 'Flash Crash'?",
-        options: ["A rapid market drop followed by quick recovery", "A prolonged market downturn", "An SEC regulation", "A high volatility trading strategy"],
-        answer: "A rapid market drop followed by quick recovery"
-    },
-    {
-        question: "6. What does 'VWAP' stand for?",
-        options: ["Volume Weighted Average Price", "Volatility Weighted Asset Pricing", "Variable Weighted Algorithmic Pricing", "Valued Working Asset Portfolio"],
-        answer: "Volume Weighted Average Price"
-    },
-    {
-        question: "7. What is 'Arbitrage' in trading?",
-        options: ["Exploiting price differences between markets", "Investing in undervalued assets", "Selling high and buying low", "A long-term growth strategy"],
-        answer: "Exploiting price differences between markets"
-    },
-    {
-        question: "8. What is 'Dark Pool Trading'?",
-        options: ["Private trading without public disclosure", "Illegal stock trading", "A high-risk investment strategy", "A government-backed trading program"],
-        answer: "Private trading without public disclosure"
-    },
-    {
-        question: "9. What is the 'Put-Call Ratio' used for?",
-        options: ["Measuring market sentiment", "Calculating stock earnings", "Predicting dividend payouts", "Analyzing trade execution speed"],
-        answer: "Measuring market sentiment"
-    },
-    {
-        question: "10. What is 'Beta' in stock trading?",
-        options: ["A measure of stock volatility versus the market", "The growth rate of a company", "A strategy to mitigate risk", "A type of futures contract"],
-        answer: "A measure of stock volatility versus the market"
-    }
-];
-
 const ExperiencedQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [quizFinished, setQuizFinished] = useState(false);
+    const [questions, setQuestions] = useState([]);
+    const [previousScores, setPreviousScores] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchPreviousScores = async () => {
+        try {
+            const userId = localStorage.getItem('userId');
+            if (userId) {
+                const { data } = await axios.get(`http://localhost:8081/quiz/scores/${userId}/experienced`);
+                if (data.success) {
+                    setPreviousScores(data.scores);
+                }
+            }
+        } catch (error) {
+            console.error('Failed to fetch previous scores:', error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchQuestions = async () => {
+            try {
+                const { data } = await axios.get('http://localhost:8081/quiz/experienced');
+                setQuestions(data.questions);
+                setLoading(false);
+                // Fetch previous scores after questions are loaded
+                await fetchPreviousScores();
+            } catch (error) {
+                console.error('Failed to fetch quiz questions:', error);
+                if (error.response && error.response.status === 404) {
+                    alert('Quiz not found. Please try again later.');
+                } else {
+                    alert('Failed to load quiz questions. Please try again later.');
+                }
+                setLoading(false);
+            }
+        };
+
+        fetchQuestions();
+    }, []);
+
+    const saveScore = async () => {
+        try {
+            const userId = localStorage.getItem('userId');
+            if (userId) {
+                await axios.post('http://localhost:8081/quiz/score', {
+                    userId,
+                    quizLevel: 'experienced',
+                    score,
+                    totalQuestions: questions.length
+                });
+                // Fetch updated scores after saving
+                await fetchPreviousScores();
+            }
+        } catch (error) {
+            console.error('Failed to save score:', error);
+        }
+    };
 
     const handleAnswerClick = (selectedOption) => {
-        if (selectedOption === quizQuestions[currentQuestion].answer) {
+        if (selectedOption === questions[currentQuestion].answer) {
             setScore(score + 1);
         }
 
         const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < quizQuestions.length) {
+        if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {
             setQuizFinished(true);
+            saveScore();
         }
     };
 
@@ -89,27 +95,57 @@ const ExperiencedQuiz = () => {
             
             <div className="quiz-container">
                 {!quizFinished ? (
-                    <>
-                        <h2 className="quiz-title-e">Experienced Trading Quiz</h2>
-                        <p className="quiz-question">{quizQuestions[currentQuestion].question}</p>
-                        <div className="quiz-options">
-                            {quizQuestions[currentQuestion].options.map((option, index) => (
-                                <button key={index} className="quiz-option" onClick={() => handleAnswerClick(option)}>
-                                    {option}
-                                </button>
-                            ))}
-                        </div>
-                        <p className="quiz-progress">
-                            Question {currentQuestion + 1} of {quizQuestions.length}
-                        </p>
-                    </>
+                    questions.length > 0 ? (
+                        <>
+                            <h2 className="quiz-title-e">Experienced Trading Quiz</h2>
+                            <div className="quiz-question">
+                                <span className="question-number">{currentQuestion + 1}</span>
+                                {questions[currentQuestion]?.question}
+                            </div>
+                            <div className="quiz-options">
+                                {questions[currentQuestion]?.options.map((option, index) => (
+                                    <button 
+                                        key={index} 
+                                        className="quiz-option" 
+                                        onClick={() => handleAnswerClick(option)}
+                                    >
+                                        <span className="option-letter">{String.fromCharCode(65 + index)}</span>
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                            <p className="quiz-progress">
+                                Question {currentQuestion + 1} of {questions.length}
+                            </p>
+                        </>
+                    ) : (
+                        <p className="loading-message">Loading questions...</p>
+                    )
                 ) : (
                     <div className="quiz-result">
                         <h2>Quiz Completed!</h2>
-                        <p>You Got: {score} / {quizQuestions.length}</p>
+                        <p>You Got: {score} / {questions.length}</p>
+                        
+                        {previousScores.length > 0 && (
+                            <div className="previous-scores">
+                                <h3>Your Previous Scores</h3>
+                                <div className="scores-list">
+                                    {previousScores.map((score, index) => (
+                                        <div key={index} className="score-item">
+                                            <span className="score-date">
+                                                {new Date(score.date).toLocaleDateString()}
+                                            </span>
+                                            <span className="score-value">
+                                                {score.score} / {score.totalQuestions}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                        
                         <button className="restart-btn" onClick={restartQuiz}>Restart Quiz</button>
                         <Link to="/home" className="home-btn">Back to Home</Link>
-                        
                     </div>
                 )}
             </div>

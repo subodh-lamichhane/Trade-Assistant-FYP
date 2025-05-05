@@ -2,27 +2,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap');
 
 .header {
-    text-align: center;  /* Center align all text inside the header */
+    text-align: center;
+   margin-bottom: 20px;
+ 
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-text {
+    text-align: left;
 }
 
 .header h1 {
     font-family: 'Oxanium', sans-serif;
-    font-size: 3rem;  /* Large text size */
-    font-weight: 700;  /* Bold weight */
-    color: #ffffff;  /* Bright green color */
-    letter-spacing: 1px;  /* Slight spacing between letters */
-    margin-bottom: 10px;  /* Space below the heading */
-    padding-top: 20px;
-    margin-top: 0px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
 }
 
 .header h3 {
     font-family: 'Oxanium', sans-serif;
-    font-size: 1rem;  /* Smaller text size */
-    font-weight: bold;  /* Regular weight */
-    color: #ffffff;  /* White color */
-    letter-spacing: 0.5px;  /* Slight letter spacing */
-    margin-top: 10px;  /* Remove default margin */
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin: 5px 0 0 0;
     font-style: italic;
-    margin-bottom: 20px;
 }

@@ -4,6 +4,7 @@ import './ProfilePage.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/footer';
 import Header from '../../components/header/header';
+import defaultProfilePic from '../../assets/images/default-profile-pic.png';
 
 const ProfilePage = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -31,12 +32,18 @@ const ProfilePage = () => {
                 const config = { headers: { Authorization: `Bearer ${token}` } };
                 const { data } = await axios.get('http://localhost:8081/auth/profile', config);
                 setUserInfo(data.user);
+                
+                // Set profile picture - use default unless user has uploaded a custom one
+                const profilePicUrl = data.user.profilePicture && data.user.profilePicture !== 'default-profile-pic.png'
+                    ? `http://localhost:8081${data.user.profilePicture}`
+                    : defaultProfilePic;
+                
                 setFormData({
                     fullName: data.user.name,
-                    phoneNumber: data.user.phoneNumber || '', // Ensure phone number is fetched and set
-                    password: '', // Placeholder for password
-                    confirmPassword: '', // Initialize confirmPassword
-                    profilePicture: `http://localhost:8081${data.user.profilePicture}`, // Fetch profile picture URL
+                    phoneNumber: data.user.phoneNumber || '',
+                    password: '',
+                    confirmPassword: '',
+                    profilePicture: profilePicUrl,
                 });
                 setLoading(false);
             } catch (err) {
@@ -73,20 +80,26 @@ const ProfilePage = () => {
             updatedData.append('name', formData.fullName);
             updatedData.append('phoneNumber', formData.phoneNumber);
             if (formData.password && formData.password !== '') {
-                updatedData.append('password', formData.password); // Append the new password
+                updatedData.append('password', formData.password);
             }
             if (formData.profilePicture instanceof File) {
-                updatedData.append('profilePicture', formData.profilePicture); // Append the file
+                updatedData.append('profilePicture', formData.profilePicture);
             }
 
             const { data } = await axios.put('http://localhost:8081/auth/updateProfile', updatedData, config);
             setUserInfo(data.user);
             setIsEditing(false);
+            
+            // After update, check if user has a custom profile picture
+            const profilePicUrl = data.user.profilePicture && data.user.profilePicture !== 'default-profile-pic.png'
+                ? `http://localhost:8081${data.user.profilePicture}`
+                : defaultProfilePic;
+                
             setFormData({
                 ...formData,
-                password: '', // Reset password field after saving
-                confirmPassword: '', // Clear confirm password field
-                profilePicture: `http://localhost:8081${data.user.profilePicture}`, // Update profile picture from response
+                password: '',
+                confirmPassword: '',
+                profilePicture: profilePicUrl,
             });
         } catch (err) {
             console.error("Error updating profile:", err.response?.data || err.message);
@@ -110,7 +123,7 @@ const ProfilePage = () => {
     return (
         <div className="profile-page">
             <Header />
-            <Navbar profilePicture={userInfo?.profilePicture || '/default-profile-pic.jpg'} />
+            <Navbar profilePicture={userInfo?.profilePicture || defaultProfilePic} />
 
             <div className="profile-container">
                 <h2>User Profile</h2>

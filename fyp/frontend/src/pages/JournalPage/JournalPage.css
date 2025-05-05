@@ -3,36 +3,74 @@
     text-align: center;
     background-color: #0a0a0a;
     color: white;
-    font-family: 'Poppins', sans-serif;
-    padding-bottom: 50px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
 }
 
-/* Journal Section */
-.journal-container {
+/* Journal Header */
+.journal-header {
     padding: 40px 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    margin-bottom: 40px;
 }
 
 .journal-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #00FF96 0%, #00E676 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .journal-subtitle {
-    font-size: 18px;
-    font-style: italic;
-    color: #ccc;
-    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Stats Section */
+.journal-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+}
+
+.stat-card {
+    background: rgba(30, 30, 35, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 255, 150, 0.1);
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-card p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00FF96;
+    margin: 0;
 }
 
 /* Journal Table Container */
 .journal-table-container {
-    width: 80%;
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: #1c1c1c;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0, 255, 150, 0.5);
+    background-color: rgba(28, 28, 28, 0.9);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 255, 150, 0.1);
     border: 1px solid rgba(0, 255, 150, 0.2);
 }
 
@@ -41,84 +79,344 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    padding: 0 10px;
 }
 
 .table-header h3 {
-    font-size: 20px;
+    font-size: 1.5rem;
     color: #ffffff;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    font-weight: 600;
 }
 
 /* Add Trade Button */
 .add-trade-button {
-    background-color: #FF6384;
-    color: white;
-    padding: 8px 15px;
-    font-size: 16px;
+    background: linear-gradient(90deg, #00FF96 0%, #00E676 100%);
+    color: #000000;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .add-trade-button:hover {
-    background-color: #e55374;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 150, 0.3);
+}
+
+.add-trade-button span {
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 /* Table Styling */
-.journal-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #2a2a2a;
+.table-responsive {
+    overflow-x: auto;
     border-radius: 8px;
-    overflow: hidden;
 }
 
-.journal-table th,
-.journal-table td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+.journal-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: rgba(42, 42, 42, 0.7);
 }
 
 .journal-table th {
-    background-color: #00FF96;
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
+    background-color: rgba(0, 255, 150, 0.1);
+    color: #00FF96;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px;
+    text-align: left;
+    border-bottom: 2px solid rgba(0, 255, 150, 0.2);
 }
 
-.journal-table tbody tr:nth-child(even) {
+.journal-table td {
+    padding: 16px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.journal-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.journal-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Profit and Loss Colors */
+/* Profit and Loss Styling */
 .profit {
-    color: #00FF96;
-    font-weight: bold;
+    color: #00FF96 !important;
+    font-weight: 600;
 }
 
 .loss {
-    color: #FF6384;
-    font-weight: bold;
+    color: #FF6384 !important;
+    font-weight: 600;
 }
 
-/* Edit and Delete Buttons */
-.edit-button,
-.delete-button {
-    border: none;
-    background: none;
-    font-size: 18px;
+.profit-indicator, .loss-indicator {
+    margin-left: 5px;
+    font-size: 0.8rem;
+}
+
+/* View Button */
+.view-button {
+    background: transparent;
+    color: #00FF96;
+    border: 1px solid #00FF96;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
-.edit-button:hover {
-    color: #FFD700;
+.view-button:hover {
+    background: rgba(0, 255, 150, 0.1);
+    transform: translateY(-2px);
+}
+
+ /* Action Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Delete Button */
+.delete-button {
+    background: transparent;
+    color: #FF6384;
+    border: 1px solid #FF6384;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .delete-button:hover {
+    background: rgba(255, 99, 132, 0.1);
+    transform: translateY(-2px);
+}
+
+.delete-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Modal Styling */
+.trade-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.trade-modal {
+    background: #1c1c1c;
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #ffffff;
+}
+
+.trade-modal h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #00FF96;
+}
+
+.trade-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-row span:first-child {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.detail-row span:last-child {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.detail-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-section h3 {
+    font-size: 1.1rem;
+    color: #00FF96;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.detail-section p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+}
+
+.trade-screenshot {
+    margin-top: 30px;
+}
+
+.trade-screenshot h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #00FF96;
+}
+
+.trade-screenshot img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 150, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+/* Scrollbar Styling */
+.trade-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.trade-modal::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.trade-modal::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 150, 0.3);
+    border-radius: 4px;
+}
+
+.trade-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 150, 0.5);
+}
+
+/* Loading and Error States */
+.loading-spinner {
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.error-message {
+    padding: 20px;
     color: #FF6384;
+    background: rgba(255, 99, 132, 0.1);
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.empty-state {
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .journal-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .journal-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .table-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .add-trade-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .journal-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .journal-title {
+        font-size: 2rem;
+    }
+    
+    .stat-card p {
+        font-size: 1.8rem;
+    }
 }

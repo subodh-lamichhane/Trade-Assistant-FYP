@@ -29,7 +29,7 @@
 .hero-text p {
     font-size: 1rem;
     margin-top: 10px;
-        color: #fff; /* Changed from #ccc to white */
+        color: #fff; 
 }
 
 .cta-button {

@@ -48,14 +48,13 @@
 
 /* Search Bar Container */
 .search-container {
-    margin-left: 20px;
+    position: relative;
     display: flex;
     align-items: center;
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid #ccc;
-  
 }
 
 /* Search Input */
@@ -80,6 +79,31 @@
 
 .search-container button:hover {
     background-color: #3fced0;
+}
+
+/* Search Results Dropdown */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+    background-color: #f5f5f5;
 }
 
 /* Profile Button */

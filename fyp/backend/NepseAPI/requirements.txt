@@ -1,9 +1,0 @@
-flask-heroku
-flask_cors
-pandas
-requests
-gunicorn
-whitenoise
-bs4
-lxml
-jsonify

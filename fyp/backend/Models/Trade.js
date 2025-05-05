@@ -1,11 +1,13 @@
+// Trade model - stores trading journal entries
 import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
 
+// Define trade data structure
 const TradeSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'users', // Ensure this matches the User model's collection name
+        ref: 'users', 
         required: true
     },
     tradeType: {
@@ -29,6 +31,10 @@ const TradeSchema = new Schema({
         type: Number,
         required: true
     },
+    leverage: {
+        type: Number,
+        default: 1
+    },
     profitLoss: {
         type: Number,
         required: true
@@ -43,7 +49,7 @@ const TradeSchema = new Schema({
     },
     screenshot: {
         type: String, 
-        required: false // Make this optional if not always provided
+        required: false
     },
     tradeDate: {
         type: Date,
@@ -51,4 +57,5 @@ const TradeSchema = new Schema({
     }
 });
 
+// Create and export the trade model
 export default model('Trade', TradeSchema);

@@ -6,9 +6,10 @@ import Header from '../../components/header/header';
 
 // Import images
 import heroImage from '../../assets/images/HomeP/LandingPage.png';  
-import insightImage from '../../assets/images/HomeP/TradeUp.png';  
-import tradesImage from '../../assets/images/HomeP/Journal.png';  
-import learnImage from '../../assets/images/HomeP/Light.png';  
+import insightImage from '../../assets/images/HomeP/insight.png';  
+import tradesImage from '../../assets/images/HomeP/journals.png';  
+import learnImage from '../../assets/images/HomeP/learn.png';  
+import quizImage from '../../assets/images/HomeP/quiz.png';  
 
 const LandingPage = () => {
     return (
@@ -96,7 +97,7 @@ const LandingPage = () => {
             {/* Quiz Yourself Section */}
             <section className="quiz-yourself-section">
                 <div className="section-content">
-                    <img src={insightImage} alt="Quiz Yourself" className="section-image" />
+                    <img src={quizImage} alt="Quiz Yourself" className="section-image" />
                     <div className="section-text">
                         <h2>Quiz Yourself</h2>
                         <h3>Test your knowledge and sharpen your skills.</h3>

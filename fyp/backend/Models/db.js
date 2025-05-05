@@ -1,3 +1,4 @@
+// Database connection setup
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -5,16 +6,17 @@ dotenv.config();
 
 const mongoUrl = process.env.MONGO_CONN;
 
+// Connect to MongoDB database
 const connectDB = async () => {
   if (!mongoUrl) {
-    throw new Error('MONGO_CONN environment variable is not defined');
+    throw new Error('Database connection string is missing');
   }
 
   try {
     await mongoose.connect(mongoUrl);
-    console.log('MongoDB Connected...');
+    console.log('Connected to database SUCCESSFULLY');
   } catch (err) {
-    console.error('MongoDB Connection Error:', err);
+    console.error('Database connection failed:', err);
     throw err; 
   }
 };

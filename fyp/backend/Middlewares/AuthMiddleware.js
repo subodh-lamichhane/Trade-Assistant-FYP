@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import asyncHandler from 'express-async-handler'; // Added import for express-async-handler
+import asyncHandler from 'express-async-handler';
 
 const authenticate = asyncHandler((req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
@@ -18,4 +18,4 @@ const authenticate = asyncHandler((req, res, next) => {
 });
 
 export default authenticate;
-export const protect = authenticate; // Added named export for 'protect'
+export const protect = authenticate;

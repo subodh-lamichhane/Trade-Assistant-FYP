@@ -1,15 +1,16 @@
-// src/index.js
+// Entry point for the app
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Import from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'react-toastify/ReactToastify.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Use createRoot instead of render
+// Set up the app
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router> {/* Router should still wrap your app */}
+    <Router>
       <App />
     </Router>
   </React.StrictMode>
